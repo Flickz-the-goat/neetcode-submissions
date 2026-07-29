@@ -1,0 +1,21 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        
+        max_l = 0
+        saved_k = k
+        prev = s[0]
+        win = [prev]
+
+        for c in s[1:]:
+            win.append(c)
+            if c != prev:
+                k -= 1
+                if k == -1:
+                    l = len(win)
+                    max_l = max(max_l, l)
+                    k = saved_k
+                    win = []
+            prev = c
+            
+
+        return max(len(win), max_l)
